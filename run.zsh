@@ -1,4 +1,5 @@
 #!/bin/bash
+#Yu Guo
 
 # e.g. SNP calling on chr1H from 0Mb to 20Mb
 
