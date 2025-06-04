@@ -43,13 +43,30 @@ $ grep -v "#" genome/ensembl-plants/Hordeum_vulgare.MorexV3_pseudomolecules_asse
 1H	IPK	gene	76744	77373	.	+	.	ID=gene:HORVU.MOREX.r3.1HG0000030;biotype=protein_coding;gene_id=HORVU.MOREX.r3.1HG0000030;logic_name=ipk_genes_hc
 ```
 
-When using ```samtools faindex```, all characters following the first space in the FASTA header line are removed. Since 1H-7H are the conventional chromosome names for barley, we used the reference genome from Ensembl Plants, which follows this naming convention
+When using ```samtools faidx```, all characters following the first space in the FASTA header line are removed. Since 1H-7H are the conventional chromosome names for barley, we used the reference genome from Ensembl Plants, which follows this naming convention
 
 ## Data processing
 
-## Data analysis
+All samples were processed using the [RepAdapt](https://github.com/RepAdapt/snp_calling_simple) pipeline. The scripts were adapted for execution on the UMN-MSI supercomputing infrastructure. Additionally, the BAM file indexing step was changed to use ```csi``` format due to large file sizes, quality check control step was added with ```multiQC``, and the pipeline was optimized by removing non-essential intermediate files to save space in the storage disks. The custom RepAdapt scripts can be found in: [01_snp_calling-bash](https://github.com/SteffensonLab/SNP_calling/tree/main/01_snp_calling-bash)
 
-Variant annotation with VeP
+## Variant filtering
 
-Pixy
+To be defined...
 
+## Downstream analysis
+
+### Variant annotation with VeP
+
+To annotate variants located within or near to genes (including upstream and downstream regions), gene coordinates were extracted from the GFF3 file. A flanking region of 2000 bp was added to both the upstream and downstream region of each gene. The resulting BED file was used to extract variants located in these regions, and then VEP (Variant Effect Predictor) was then run to annotate each variant. The [03_variant_annotation](https://github.com/SteffensonLab/SNP_calling/tree/main/03_variant_annotation) contain the script used in this step.
+
+### Pixy
+
+[Pixy](https://pixy.readthedocs.io/en/latest/index.html) to be defined...
+
+### FastDFE
+
+[FastDFE](https://fastdfe.readthedocs.io/en/latest/index.html) to be defined...
+
+### GWAS
+
+To be defined...
