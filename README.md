@@ -9,13 +9,15 @@ Ahmad H. Sallam, Yu Guo, et al. 2024. **Whole-Genome Sequencing of the Wild Barl
 
 ## Data acquisition
 
-All the raw sequencing data and genome files were retrieved from EBI and Ensembl plants databases, respectively.
+All raw sequencing data retrieved from the European Bioinformatics Institute (EBI) / European Nucleotide Archive (ENA) (https://www.ebi.ac.uk/ena/browser/home), and the corresponding reference genome files were obtained from the Ensembl Plants.
 
 ### Fastq libraries
 
+The 281 WGS paired-end libraries were obtained from the EBI/ENA via the FTP protocol. The metadata was retrieved using the BioProject PRJEB80165. All libraries available under this project are splitted by sequencing lanes, and they were concatenated after verifying file integrity using ```md5sum```. The scripts used to download the data are available in: [00_download-fastq](https://github.com/SteffensonLab/SNP_calling/tree/main/00_download-fastq)
+
 ### Genome files
 
-All the short variant calling and downstream analysis were done based on the Morex V3 available in Ensembl plants database, which is the same available at EBI, but with different chromosome names, as showed bellow:
+All short variant calling and downstream analyses were performed using the Morex V3 reference genome available in the Ensembl Plants database. This genome is identical to the version available from the EBI, but differs in chromosome names, as shown bellow:
 
 ```text
 $ grep ">" genome/ensembl-plants/Hordeum_vulgare.MorexV3_pseudomolecules_assembly.dna.toplevel.fa | head -n 7
@@ -41,7 +43,7 @@ $ grep -v "#" genome/ensembl-plants/Hordeum_vulgare.MorexV3_pseudomolecules_asse
 1H	IPK	gene	76744	77373	.	+	.	ID=gene:HORVU.MOREX.r3.1HG0000030;biotype=protein_coding;gene_id=HORVU.MOREX.r3.1HG0000030;logic_name=ipk_genes_hc
 ```
 
-For samtools fasta index, all the characters after the first space are removed from the fasta identification line. As 1H..7H is a conventional chromosome name for barley, we used the genome from Ensembl plants.
+When using ```samtools faindex```, all characters following the first space in the FASTA header line are removed. Since 1H-7H are the conventional chromosome names for barley, we used the reference genome from Ensembl Plants, which follows this naming convention
 
 ## Data processing
 
