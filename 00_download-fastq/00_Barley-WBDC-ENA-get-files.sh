@@ -74,4 +74,4 @@ cd ../../
 
 paste <(cut -f2,3 ${WORKING_DIR}/EBI/fastq_files.txt | sort -k1 | awk '{printf $1" "$2"\n"}') \
      <(sort -k2 ${WORKING_DIR}/EBI/md5-hashes_downloaded.txt | awk '{printf $2" "$1"\n"}') | \
-        awk '{if ($2!=$4) printf $0"\n"}' > fastq_diff.txt
+        awk '{if ($2!=$4) printf $0"\n"}' > ${WORKING_DIR}/EBI/fastq_diff.txt
