@@ -47,7 +47,7 @@ When using ```samtools faidx```, all characters following the first space in the
 
 ## Data processing
 
-All samples were processed using the [RepAdapt](https://github.com/RepAdapt/snp_calling_simple) pipeline. The scripts were adapted for execution on the UMN-MSI supercomputing infrastructure. Additionally, the BAM file indexing step was changed to use ```csi``` format due to large file sizes, quality check control step was added with ```multiQC```, and the pipeline was optimized by removing non-essential intermediate files to save space in the storage disks. The custom RepAdapt scripts can be found in: [01_snp_calling-bash](https://github.com/SteffensonLab/SNP_calling/tree/main/01_snp_calling-bash)
+All samples were processed using the [RepAdapt](https://github.com/RepAdapt/snp_calling_simple) pipeline. The scripts were adapted for execution on the UMN-MSI supercomputing infrastructure. Additionally, the BAM file indexing step was changed to use ```csi``` format due to limitation on chromosome size, quality check control step was added with ```multiQC```, and the pipeline was optimized by removing non-essential intermediate files to save space in the storage disks. The custom RepAdapt scripts can be found in: [01_snp_calling-bash](https://github.com/SteffensonLab/SNP_calling/tree/main/01_snp_calling-bash)
 
 ## Variant filtering
 
