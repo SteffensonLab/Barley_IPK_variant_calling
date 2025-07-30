@@ -58,7 +58,10 @@ and then applied  ```"QD < 2.0 || FS > 60.0 || MQ < 45.0 || MQRankSum < -12.5 ||
 
 We used ```"QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0"``` to filter Indels. 
 
+To filter SNPs from RepAdapt workflow, we required a miniumn of 10 reads to support each variant call then applied mapping quality of 20 and SNP quality score above 30.
+
 Related scripts can be found at [02_variant_filtering](https://github.com/SteffensonLab/Barley_IPK_variant_calling/tree/main/02_variant_filtering) 
+
 
 ## Downstream analysis
 
