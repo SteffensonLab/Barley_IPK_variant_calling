@@ -51,7 +51,7 @@ All samples were processed using the [RepAdapt](https://github.com/RepAdapt/snp_
 
 ## Variant filtering
 
-To be defined...
+Recommended GATK filtering was carried out for the variant set. Briefly, max_depth coverage was calculated using maxdepth=$(bcftools query -f '%INFO/DP\n' merged.sorted.vcf.gz | datamash mean 1 sstdev 1 | awk '{printf "%.2f", $1 + ($2 * 5)}') and "QD < 2.0 || FS > 60.0 || MQ < 45.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || DP > 4654.61" filter was used to obtain the high quality SNP set. We used "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" to filter Indels
 
 ## Downstream analysis
 
