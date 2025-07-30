@@ -56,7 +56,7 @@ We first calculated the max_depth coverage
 ```maxdepth=$(bcftools query -f '%INFO/DP\n' merged.sorted.vcf.gz | datamash mean 1 sstdev 1 | awk '{printf "%.2f", $1 + ($2 * 5)}' ```
 and then applied  ```"QD < 2.0 || FS > 60.0 || MQ < 45.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || DP > 4654.61"``` to obtain the high quality SNP set. 
 
-We used "QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0" to filter Indels
+We used ```"QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0"``` to filter Indels
 
 ## Downstream analysis
 
