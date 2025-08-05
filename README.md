@@ -51,7 +51,17 @@ All samples were processed using the [RepAdapt](https://github.com/RepAdapt/snp_
 
 ## Variant filtering
 
-To be defined...
+We used recommended gatk filtering paramters to filter the variants.
+We first calculated the max_depth coverage 
+```maxdepth=$(bcftools query -f '%INFO/DP\n' merged.sorted.vcf.gz | datamash mean 1 sstdev 1 | awk '{printf "%.2f", $1 + ($2 * 5)}' ```
+and then applied  ```"QD < 2.0 || FS > 60.0 || MQ < 45.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0 || DP > 4654.61"``` to obtain the high quality SNP set. 
+
+We used ```"QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0"``` to filter Indels. 
+
+To filter SNPs from RepAdapt workflow, we required a miniumn of 10 reads to support each variant call then applied mapping quality of 20 and SNP quality score above 30.
+
+Related scripts can be found at [02_variant_filtering](https://github.com/SteffensonLab/Barley_IPK_variant_calling/tree/main/02_variant_filtering) 
+
 
 ## Downstream analysis
 
