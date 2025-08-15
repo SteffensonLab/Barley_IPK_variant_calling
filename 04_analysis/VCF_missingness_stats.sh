@@ -58,8 +58,33 @@ process_vcfs() {
   # Extract the chromosome name from the VCF file name
   # Calculate missing - GATK indels
   log "   -> Extracting missingness for each variant"
-  bcftools query -f '%F_MISSING\n' "$VCF_FILE" | \
-      datamash --round 3 mean 1 sstdev 1 median 1 min 1 max 1 count 1 > "${OUTPUT_DIR}/${SAMPLE_NAME}/missing_summary.txt"
+
+
+  # Get the summary stats from datamash into a variable
+  summary_line=$(bcftools query -f '%F_MISSING\n' "$VCF_FILE" | \
+      datamash --round 3 mean 1 sstdev 1 median 1 min 1 max 1 count 1)
+
+  read mean sstdev median min max count <<< "$summary_line"
+
+  # Write labeled summary above the datamash output
+  {
+    echo "Mean: $mean"
+    echo "StdDev: $sstdev"
+    echo "Median: $median"
+    echo "Min: $min"
+    echo "Max: $max"
+    echo "Count: $count"
+    echo ""
+    echo "$summary_line"
+  } > "${OUTPUT_DIR}/${SAMPLE_NAME}/missing_summary.txt"
+
+  log "Missingness summary for ${SAMPLE_NAME}:"
+  log "  Mean: $mean"
+  log "  StdDev: $sstdev"
+  log "  Median: $median"
+  log "  Min: $min"
+  log "  Max: $max"
+  log "  Count: $count"
 
   # Generate summary statistics for the VCF file
   log "   -> Generating summary statistics for ${SAMPLE_NAME}"
@@ -68,7 +93,7 @@ process_vcfs() {
   # Use bcftools plot-vcfstats (requires plot-vcfstats.py and dependencies)
   log "   -> Generating plots with plot-vcfstats"
   if command -v plot-vcfstats &> /dev/null; then
-    plot-vcfstats -p "${OUTPUT_DIR}/${SAMPLE_NAME}/plots_" "${OUTPUT_DIR}/${SAMPLE_NAME}/${SAMPLE_NAME}_stats.txt"
+  plot-vcfstats -p "${OUTPUT_DIR}/${SAMPLE_NAME}/plots" "${OUTPUT_DIR}/${SAMPLE_NAME}/${SAMPLE_NAME}_stats.txt"
   else
     log "   -> plot-vcfstats not found, skipping automatic plotting"
   fi
