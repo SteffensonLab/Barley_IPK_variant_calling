@@ -31,6 +31,8 @@ def parse_bcftools_af_data(data_text: str) -> List[Tuple[float, int]]:
                 cnt = int(parts[3])
             except ValueError:
                 continue
+            if af == 0.0:
+                continue  # Skip SNPs with AF == 0.0
             af_items.append((af, cnt))
     return af_items
 
