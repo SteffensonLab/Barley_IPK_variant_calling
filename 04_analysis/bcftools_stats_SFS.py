@@ -113,7 +113,14 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(
         description=(
             "Fold bcftools AF SFS from stats output (no plotting)"
-        )
+        ),
+        epilog="""
+Example:
+  python bcftools_stats_SFS.py input.stats --bins 20 --out folded_sfs.tsv
+  python bcftools_stats_SFS.py input.stats --bin-width 0.025
+  python bcftools_stats_SFS.py  # Runs demo with sample data
+        """,
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
         "input",
