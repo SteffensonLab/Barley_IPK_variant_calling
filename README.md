@@ -79,4 +79,4 @@ To annotate variants located within or near to genes (including upstream and dow
 
 ### GWAS
 
-To identify significant genotypic associations with both lemma color and stem rust resistance in the sequenced WBDC population, we ran Mixed Linear Models (MLM), FarmCPU and BLINK models using ```GAPIT``` (https://github.com/jiabowang/GAPIT).
+To identify significant genotypic associations with both lemma color and stem rust resistance in the sequenced WBDC population, Mixed Linear Models (MLM), FarmCPU and BLINK models were run using ```GAPIT``` (https://github.com/jiabowang/GAPIT).
