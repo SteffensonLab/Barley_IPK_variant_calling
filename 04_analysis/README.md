@@ -1,7 +1,7 @@
 # Processing VCF files from WBDC variant calling
 
-Peter L. Morrell
-14 August 2025
+Peter L. Morrell \
+14 August 2025 \
 Falcon Heights, MN 55108 USA
 
 ## Several additions are needed for the VCFs
